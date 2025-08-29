@@ -8,6 +8,9 @@ cards = [11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 def get_balance():
   return balance
 
+def print_balance():
+  print(f'Balance: {balance}\n')
+
 def random_card():
   return random.choice(cards)
 
@@ -55,9 +58,9 @@ def print_state(win):
 
 while game:
   clear_screen()
-  print(f'Balance: {balance}')
+  print_balance()
   while True:
-    bet = int(input('\nWhat\'s your bet?: '))
+    bet = int(input('What\'s your bet?: '))
     clear_screen()
     if bet <= balance and bet > 0:
       break
@@ -110,7 +113,7 @@ while game:
   while True:
     print_stats(player_cards, dealer_cards)
     print_state(win)
-    print(f'Balance: {balance}\n')
+    print_balance()
     another = input('Type \'yes\' if you want to make another bet. Type \'no\' if not: ')
     if another == 'yes':
       break
