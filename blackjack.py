@@ -1,5 +1,5 @@
 
-import random
+import random, os
 
 balance = 5000
 game = True
@@ -12,7 +12,7 @@ def random_card():
   return random.choice(cards)
 
 def clear_screen():
-  print('\n' * 20)
+  os.system('cls')
 
 def add_random_card(maze):
   while True:
