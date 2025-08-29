@@ -39,14 +39,19 @@ def print_stats(player_stats, dealer_stats):
 
 def manage_balance(win, bet):
   if win == -1:
-    print('Player loses.')
     return -bet
   elif win == 1:
-    print('Player wins!')
     return bet
   else:
-    print('Draw.')
     return 0
+  
+def print_state(win):
+  if win == -1:
+    print('Player loses.')
+  elif win == 1:
+    print('Player wins!')
+  else:
+    print('Draw.')
 
 while game:
   clear_screen()
@@ -104,7 +109,7 @@ while game:
 
   while True:
     print_stats(player_cards, dealer_cards)
-    manage_balance(win, 0)
+    print_state(win)
     print(f'Balance: {balance}\n')
     another = input('Type \'yes\' if you want to make another bet. Type \'no\' if not: ')
     if another == 'yes':
