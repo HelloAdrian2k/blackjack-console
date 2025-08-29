@@ -58,16 +58,21 @@ def print_state(win):
 
 while game:
   clear_screen()
-  print_balance()
   while True:
-    bet = int(input('What\'s your bet?: '))
+    print_balance()
+    bet = input('What\'s your bet?: ')
     clear_screen()
-    if bet <= balance and bet > 0:
-      break
-    elif bet > balance:
-      print('You don\'t have enought money.')
+    if bet.isdigit():
+      bet = int(bet)
+      if bet <= balance and bet > 0:
+        break
+      elif bet > balance:
+        print('You don\'t have enought money.\n')
+      else:
+        print('Invalid bet.\n')
     else:
-      print('Invalid bet.')
+      print('Invalid bet.\n')
+
   player_cards = []
   dealer_cards = []
   win = 1
