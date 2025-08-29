@@ -35,23 +35,25 @@ def sum_cards(maze):
 
 def print_stats(player_stats, dealer_stats):
   print(f'\nYou: {player_stats} -> {sum_cards(player_cards)}')
-  print(f'Dealer: {dealer_stats} -> {sum_cards(dealer_cards)}')
+  print(f'Dealer: {dealer_stats} -> {sum_cards(dealer_cards)}\n')
 
 def manage_balance(win, bet):
   if win == -1:
-    print('\nPlayer loses.')
+    print('Player loses.')
     return -bet
   elif win == 1:
-    print('\nPlayer wins!')
+    print('Player wins!')
     return bet
   else:
-    print('\nDraw.')
+    print('Draw.')
     return 0
 
 while game:
+  clear_screen()
   print(f'Balance: {balance}')
   while True:
-    bet = int(input('What\'s your bet?: '))
+    bet = int(input('\nWhat\'s your bet?: '))
+    clear_screen()
     if bet <= balance and bet > 0:
       break
     elif bet > balance:
@@ -65,12 +67,13 @@ while game:
   player_cards.append(random_card())
   dealer_cards.append(random_card())
 
-  print_stats(player_cards, dealer_cards)
 
   can_continue = True
   while can_continue:
     while True:
-      add_or_pass = input('\nType \'add\' if you want to keep going or \'pass\' if you want to stop: ')
+      print_stats(player_cards, dealer_cards)
+      add_or_pass = input('Type \'add\' if you want to keep going or \'pass\' if you want to stop: ')
+      clear_screen()
       if add_or_pass == 'add' or add_or_pass == 'pass':
         break
     if add_or_pass == 'add':
@@ -80,7 +83,7 @@ while game:
         can_continue = False
         win = -1
 
-      print_stats(player_cards, dealer_cards)
+      clear_screen()
     else:
       can_continue = False
   
@@ -91,7 +94,6 @@ while game:
     while sum_cards(dealer_cards) < final_player_sum:
       add_random_card(dealer_cards)
     
-    print_stats(player_cards, dealer_cards)
     final_dealer_sum = sum_cards(dealer_cards)
     if final_dealer_sum <= 21 and final_dealer_sum > final_player_sum:
       win = -1
@@ -100,13 +102,15 @@ while game:
     balance += manage_balance(win, bet)
 
 
-  print(f'Balance: {balance}')
-
   while True:
-    another = input('\nType \'yes\' if you want to make another bet. Type \'no\' if not: ')
+    print_stats(player_cards, dealer_cards)
+    manage_balance(win, 0)
+    print(f'Balance: {balance}\n')
+    another = input('Type \'yes\' if you want to make another bet. Type \'no\' if not: ')
     if another == 'yes':
       break
     elif another == 'no':
       game = False
       break
+    clear_screen()
   clear_screen()
