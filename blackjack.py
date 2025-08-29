@@ -55,7 +55,7 @@ while game:
     if bet <= balance and bet > 0:
       break
     elif bet > balance:
-      print('You don\'t have enought balance.')
+      print('You don\'t have enought money.')
     else:
       print('Invalid bet.')
   player_cards = []
